@@ -61,6 +61,9 @@ function addTask(taskText, isCompleted = false, timestamp = null) {
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "❌";
 
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "✏️";
+
   completeBtn.addEventListener("click", () => {
     li.remove();
     const newTimestamp = new Date().toISOString();
@@ -69,13 +72,31 @@ function addTask(taskText, isCompleted = false, timestamp = null) {
     updateProgress();
   });
 
+  editBtn.addEventListener("click", () => {
+    const newText = prompt("Edit your task:", taskText);
+    if (newText && newText.trim() !== ""){
+      li.querySelector("span").textContent = newText.trim();
+      saveTasks();
+    }
+  });
+
   deleteBtn.addEventListener("click", () => {
     li.remove();
     saveTasks();
     updateProgress();
   });
 
+
+  [completeBtn,editBtn,deleteBtn].forEach(btn => {
+    btn.style.marginLeft = "8px";
+    btn.style.cursor = "pointer";
+    btn.style.border = "none";
+    btn.style.background = "transparent";
+    btn.style.fontSize = "16px";
+  });
+
   li.appendChild(completeBtn);
+  li.appendChild(editBtn)
   li.appendChild(deleteBtn);
 
   if (isCompleted) {
@@ -122,4 +143,10 @@ document.getElementById("addTaskBtn").addEventListener("click", () => {
 });
 
 loadTasks();
+
+
+
+
+
+
 
