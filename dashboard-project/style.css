@@ -1,0 +1,116 @@
+body {
+  margin: 50px auto;
+  padding: 0 15px;
+  font-family: Arial, sans-serif;
+  background: #fafafa;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-width: 450px;
+}
+
+h2 {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+#taskInput{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+#addTaskBtn{
+  width: 100%;
+  padding: 10px;
+  background: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: 0.2s;
+}
+
+#addTaskBtn:hover {
+  background: #555;
+}
+
+
+#app {
+  text-align: center;
+}
+
+input, button {
+  padding: 8px 12px;
+  font-size: 16px;
+  margin: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+button {
+  background: #444;
+  color: white;
+  cursor: pointer;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+
+li{
+  margin: 6px 0;
+  padding: 10px 12px;
+  background: white;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  border: 1px solid #eee;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeIn 0.25s forwards;
+}
+
+.removing{
+  animation: fadeOut 0.25s forwards;
+}
+
+@keyframes fadeIn {
+  to{
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fadeOut {
+  to{
+    opacity: 0;
+    transform: translateY(-8px);
+  } 
+}
+
+li button{
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px;
+  opacity: 0.75;
+  transition: 0.2s;
+}
+
+li button:hover {
+  opacity: 1;
+}
