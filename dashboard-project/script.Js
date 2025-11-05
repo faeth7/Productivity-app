@@ -144,9 +144,3 @@ document.getElementById("addTaskBtn").addEventListener("click", () => {
 
 loadTasks();
 
-
-
-
-
-
-
