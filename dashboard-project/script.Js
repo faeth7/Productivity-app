@@ -131,6 +131,53 @@ function formatTimestamp(dateString) {
 }
 
 
+function enableDragAndDrop(listId){
+  const List = document.getElementById(listId);
+  let draggedItem = null;
+
+  list.addEventListener("dragstart", (e) => {
+    draggedItem = e.target;
+    e.target.style.opacity = o.5;
+  });
+  
+  list.addEventListener("dragend", (e) => {
+    draggedItem = null;
+    e.target.style.opacity = 1
+    saveTasks();
+  });
+
+  list.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const afterElement = getDragAfterElement(list,e.clientY);
+    if (afterElement == null){
+      list.appendChild(draggedItem);
+    } else {
+      list.insertBefore(draggedItem, afterElement);
+  }
+});
+
+function getDragAfterElement(list,y){
+  const draggableElements = [...list.querySelectorAll("li:not(.dragging)")];
+
+  return draggableElements.reduce(
+    (closest,child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top -box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return{ offset: offset, element; child};
+      } else {
+        return closest;
+      }
+    },
+    { offset ; Number.NEGATIVE_INFINITY }
+  ).element;
+}
+
+  list.querySelectorAll("li").forEach((li) =. (li.draggable = true));
+}
+
+
+
 document.getElementById("addTaskBtn").addEventListener("click", () => {
   const input = document.getElementById("taskInput");
   const text = input.value.trim();
@@ -142,5 +189,7 @@ document.getElementById("addTaskBtn").addEventListener("click", () => {
   }
 });
 
+
 loadTasks();
+
 
